@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+[Click here to see the deployment](https://boxofficeproject.tk)
+
 ## Available Scripts
 
 In the project directory, you can run:
