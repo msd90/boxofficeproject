@@ -142,6 +142,7 @@ const date = axios.get('https://sheltered-eyrie-45123.herokuapp.com/https://www.
     if(d.getDay() === 0| d.getDay() === 5 | d.getDay() === 6){
         var weekNumber = getWeekNumber(new Date());
         var url = 'https://sheltered-eyrie-45123.herokuapp.com/https://www.boxofficemojo.com/weekend/'
+        weekNumber[1] = pad(weekNumber[1]); // pad single digit to two digits --> 1 => 01
         url = url.concat(weekNumber[0],'W',weekNumber[1]);
         var bkup_date = axios.get(url).then(function (response) {
             var $ = cheerio.load(response.data);
@@ -165,7 +166,8 @@ function useBackUpLink(){
     it ends with 2019W{Week # of the year} (ex. last week of the year 2019 = 2019W52) 
     
     Below modifies the back up link to show last weeks box office numbers*/
-    url = url.concat(weekNumber[0],'W',weekNumber[1]);
+    url = url.concat(weekNumber[0],'W',0,weekNumber[1]);
+    weekNumber[1] = pad(weekNumber[1]);
     //console.log(url)
 
     var web_data = axios.get(url).then(function (response) {
@@ -207,5 +209,10 @@ function getWeekNumber(d) {
     console.log(v);
 });*/
 
+function pad(number) {
+   
+    return (number < 10 ? '0' : '') + number
+  
+}
 
 export {result, date}
